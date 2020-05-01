@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+</head>
+<body>
+
+<div th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li sec:authorize="!isAuthenticated()" class="nav-item navbar-text">
+                    <a class="nav-link" href="#">About </a>
+                </li>
+
+                <div sec:authorize="isAuthenticated()">
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" th:href="@{/index(token=${param.token})}">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" th:href="@{/account(token=${param.token})}">Account</a>
+                    </li>
+                    <li  sec:authorize="hasAnyRole('ROLE_ADMIN')" class="nav-item navbar-text">
+                        <a class="nav-link" th:href="@{/adm/accounts(token=${param.token})}">All Accounts</a>
+                    </li>
+                    <li  sec:authorize="hasAnyRole('ROLE_ADMIN')" class="nav-item navbar-text">
+                        <a class="nav-link" th:href="@{/adm/add-book(token=${param.token})}">Entity Manager</a>
+                    </li>
+                    <li  class="nav-item navbar-text">
+                        <a class="nav-link" th:href="@{/books(token=${param.token})}">Books</a>
+                    </li>
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" th:href="@{/cart(token=${param.token})}">Your Cart</a>
+                    </li>
+                </div>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <div sec:authorize="isAuthenticated()">
+                    <li class="nav-item navbar-text">
+                        <a  class="nav-link" id="logout">Logout</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </nav>
+    <script type="text/javascript" src="/js/logout.js"></script>
+</div>
+
+<div th:fragment="bootstrap" >
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.js"></script>
+</div>
+
+</body>
+</html>

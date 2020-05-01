@@ -1,0 +1,52 @@
+.add-book-field{
+    margin: 10px 10px 10px 30px;
+    width: 300px;
+}
+
+.add-book{
+    border-top: 2px solid black;
+    padding: 10px;
+    width: 25%;
+    margin-left: 10%;
+    background: #8DB9ED;
+    float:left;
+}
+
+.obj-list{
+    border-top: 2px solid black;
+    width: 55%;
+    margin-right: 10%;
+    float:left;
+}
+.btn-group button {
+    height: 40px;
+    border: 1px solid black; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 50%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+    float: none;
+}
+.edit{
+    background-color: #03a9f4;
+}
+.activate{
+    background-color: #4CAF50;
+}
+.delete{
+    background-color: #f41746;
+}
+
+.list-entity{
+    display: none;
+}
+
+.btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: rgba(191, 191, 191, 0);
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <title>Cart</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- custom css -->
+    <link href="../css/register.css" th:href="@{/css/cart.css}" rel="stylesheet" type="text/css"/>
+    <link href="../css/navbar.css" th:href="@{/css/navbar.css}" rel="stylesheet" type="text/css"/>
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+
+    <!-- jquery script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/cart.js"></script>
+</head>
+<body>
+<div th:replace="fragments/thymeleaf-fragments :: navbar"></div>
+<div style="display: none" class="cart-container">
+<table id="cart-table" class="table table-striped table-dark">
+    <thead>
+    <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Price</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <template id="cart-template">
+        <tr>
+            <td>{{bookTitle}}</td>
+            <td>{{author}}</td>
+            <td class="price">{{price}}</td>
+            <td><button data-id="{{id}}" class="delete">Remove</button></td>
+        </tr>
+    </template>
+    </tbody>
+</table>
+    <button id="buy-btn" type="button" class="btn btn-success btn-lg btn-block">Finish Order</button>
+</div>
+<div th:replace="fragments/thymeleaf-fragments :: bootstrap"></div>
+</body>
+</html>

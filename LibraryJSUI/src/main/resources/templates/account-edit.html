@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+
+    <title>Register</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- custom css -->
+    <link href="../css/register.css" th:href="@{/css/form.css}" rel="stylesheet" type="text/css"/>
+    <link href="../css/navbar.css" th:href="@{/css/navbar.css}" rel="stylesheet" type="text/css"/>
+    <!-- jquery script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+
+
+</head>
+<body>
+<div th:replace="fragments/thymeleaf-fragments :: navbar"></div>
+<form id="edit-form" method="post">
+    <div class="container">
+        <h1>Account Edit</h1>
+        <hr>
+        <label><b>First Name</b></label>
+        <input id="firstName" type="text" name="firstName"/>
+
+        <label><b>Second Name</b></label>
+        <input id="secondName" type="text" name="secondName"/>
+
+        <label><b>last Name</b></label>
+        <input id="lastName" type="text" name="lastName"/>
+
+        <label><b>Address</b></label>
+        <input id="address" type="text" name="address"/>
+
+        <label><b>City</b></label>
+        <input id="city" type="text" name="city"/>
+
+        <label><b>Country</b></label>
+        <input id="country" type="text" name="country"/>
+
+        <label><b>Phone</b></label>
+        <input id="phone" type="text" name="phone"/>
+
+        <label><b>Email</b></label>
+        <input id="email" type="text" name="email"/>
+
+        <input id="userId" type="hidden" name="userId"/>
+        <input id="accountStatusId" type="hidden" name="accountStatusId"/>
+        <input id="accountTypeId" type="hidden" name="accountTypeId"/>
+        <input id="active" type="hidden" name="active"/>
+        <input id="code" type="hidden" name="code"/>
+        <input id="name" type="hidden" name="name"/>
+        <input id="description" type="hidden" name="description"/>
+
+
+        <hr>
+
+        <button id="submit-button" type="submit" class="registerbtn">Register</button>
+    </div>
+</form>
+
+<div th:replace="fragments/thymeleaf-fragments :: bootstrap"></div>
+
+<!-- register script -->
+<script type="text/javascript" src="/js/account-edit.js"></script>
+</body>
+</html>

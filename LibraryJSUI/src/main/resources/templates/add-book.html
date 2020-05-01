@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+
+    <title>Add book</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- custom css -->
+    <link href="../css/register.css" th:href="@{/css/book.css}" rel="stylesheet" type="text/css"/>
+    <link href="../css/navbar.css" th:href="@{/css/navbar.css}" rel="stylesheet" type="text/css"/>
+    <!-- jquery script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+
+    <!-- register script -->
+    <script type="text/javascript" src="/js/add-book.js"></script>
+    <script type="text/javascript" src="/js/book.js"></script>
+
+</head>
+<body>
+<div th:replace="fragments/thymeleaf-fragments :: navbar"></div>
+<div class="add-book">
+    <label class=" add-book-field" for="title">Title:</label>
+    <br>
+    <input id="title" style="width: fit-content" type="text" class="form-control mr-sm-2  add-book-field" >
+    <hr>
+    <label class=" add-book-field" for="author-combo">Author:</label>
+    <br>
+
+    <select class="btn btn-secondary dropdown-toggle  add-book-field" id="author-combo">
+        <template id="author-template">
+            <option value="{{id}}" selected>{{authorName}}</option>
+        </template>
+    </select>
+    <div id="author-input-box" style="display: none" class="form-inline my-2 my-lg-0">
+        <input  id="author-input" class="form-control mr-sm-2 add-book-field" type="text" >
+        <button class="btn btn-outline-success my-2 my-sm-0 add-new" type="submit">Add</button>
+    </div>
+
+    <hr>
+    <label class="add-book-field" for="genre-combo">Genre:</label>
+    <br>
+
+    <select class="btn btn-secondary dropdown-toggle add-book-field" id="genre-combo">
+        <template id="genre-template">
+            <option value="{{id}}" selected>{{name}}</option>
+        </template>
+    </select>
+    <div id="genre-input-box" style="display: none" class="form-inline my-2 my-lg-0">
+        <input id="genre-input" class="form-control mr-sm-2 add-book-field" type="text" >
+        <button class="btn btn-outline-success my-2 my-sm-0 add-new" >Add</button>
+    </div>
+
+    <hr>
+    <label class="add-book-field" for="department-combo">Department:</label>
+    <br>
+    <select class="btn btn-secondary dropdown-toggle add-book-field" id="department-combo">
+        <template id="department-template">
+            <option value="{{id}}" selected >{{name}}</option>
+        </template>
+    </select>
+    <div id="department-input-box" style="display: none" class="form-inline my-2 my-lg-0">
+        <input id="department-input" class="form-control mr-sm-2 add-book-field" type="text" >
+        <button class="btn btn-outline-success my-2 my-sm-0 add-new" type="submit">Add</button>
+    </div>
+    <hr>
+    <label class="add-book-field" for="price">Price:</label>
+    <br>
+    <input id="price" type="textr" style="width: fit-content" class="form-control mr-sm-2 add-book-field">
+    <hr>
+    <label class="add-book-field" for="year">Year:</label>
+    <br>
+    <input id="year" type="text" style="width: fit-content" class="form-control mr-sm-2 add-book-field">
+    <button id="add-book-btn" type="button" class="btn btn-success btn-lg btn-block">Finish Order</button>
+</div>
+<div class="obj-list">
+    <ul class="nav nav-tabs bg-dark entity-nav">
+        <li class="nav-item">
+            <a class="nav-link list-option" href="#book-list" >Books</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link list-option" href="#author-list">Authors</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link list-option" href="#genre-list">Genre</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link list-option" href="#department-list">Department</a>
+        </li>
+    </ul>
+    <div id="book-list" class="list-entity">
+        <table id="book-table" class=" table table-striped table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Department</th>
+                <th scope="col">Year</th>
+                <th scope="col">Price</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <template id="book-template">
+                <tr>
+                    <td>{{title}}</td>
+                    <td>{{authorName}}</td>
+                    <td>{{genreName}}</td>
+                    <td>{{departmentName}}</td>
+                    <td>{{year}}</td>
+                    <td>{{price}}</td>
+                    <td >
+                        <div class="btn-group">
+                        <button data-id="{{id}}" class="horizontal-btn edit">Edit</button>
+                        <button data-id="{{id}}" class="horizontal-btn activate" >Activate</button>
+                        <button data-id="{{id}}" class="horizontal-btn delete" >Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div id="author-list" class="list-entity">
+        <table id="author-table" class=" table table-striped table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Author Name</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <template id="author-list-template">
+                <tr>
+                    <td>{{code}}</td>
+                    <td>{{name}}</td>
+                    <td>{{authorName}}</td>
+                    <td >
+                        <div class="btn-group">
+                            <button data-id="{{id}}" class="horizontal-btn edit">Edit</button>
+                            <button data-id="{{id}}" class="horizontal-btn activate" >Activate</button>
+                            <button data-id="{{id}}" class="horizontal-btn delete" >Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="genre-list" class="list-entity">
+        <table id="genre-table" class="table table-striped table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <template id="genre-list-template">
+                <tr>
+                    <td>{{code}}</td>
+                    <td>{{name}}</td>
+
+                    <td >
+                        <div class="btn-group">
+                            <button data-id="{{id}}" class="horizontal-btn edit">Edit</button>
+                            <button data-id="{{id}}" class="horizontal-btn activate" >Activate</button>
+                            <button data-id="{{id}}" class="horizontal-btn delete" >Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="department-list" class="list-entity">
+        <table id="department-table" class="table table-striped table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <template id="department-list-template">
+                <tr>
+                    <td>{{code}}</td>
+                    <td>{{name}}</td>
+                    <td >
+                        <div class="btn-group">
+                            <button data-id="{{id}}" class="horizontal-btn edit">Edit</button>
+                            <button data-id="{{id}}" class="horizontal-btn activate" >Activate</button>
+                            <button data-id="{{id}}" class="horizontal-btn delete" >Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div th:replace="fragments/thymeleaf-fragments :: bootstrap"></div>
+
+</body>
+</html>
